@@ -1,98 +1,52 @@
 <?php
-
 class DanhBa {
-    private $danhBa = [];
-
-    public function themNguoiLienHe($ten, $sdt, $email) {
-        // Tạo một mảng liên hợp đại diện cho người liên hệ
-        $nguoiLienHe = [
-            'ten' => $ten,
-            'sdt' => $sdt,
-            'email' => $email
-        ];
-
-        // Thêm người liên hệ vào danh bạ
-        $this->danhBa[] = $nguoiLienHe;
-    }
-
-    public function hienThiThongTinTheoTen($ten) {
-        // Tìm kiếm người liên hệ theo tên
-        $nguoiLienHe = null;
-        foreach ($this->danhBa as $nguoi) {
-            if ($nguoi['ten'] == $ten) {
-                $nguoiLienHe = $nguoi;
-                break;
-            }
-        }
-
-        // Hiển thị thông tin dưới dạng bảng HTML
-        if ($nguoiLienHe) {
-            echo "<table border='1'>";
-            echo "<tr><th>Tên</th><th>Số điện thoại</th><th>Email</th></tr>";
-            echo "<tr><td>{$nguoiLienHe['ten']}</td><td>{$nguoiLienHe['sdt']}</td><td>{$nguoiLienHe['email']}</td></tr>";
-            echo "</table>";
-        } else {
-            echo "Không tìm thấy người liên hệ với tên $ten.";
-        }
-    }
-
-    public function hienThiDanhSach() {
-        // Hiển thị danh sách tất cả người liên hệ dưới dạng bảng HTML
-        if (empty($this->danhBa)) {
-            echo "Danh bạ trống.";
-        } else {
-            echo "<table border='1'>";
-            echo "<tr><th>Tên</th><th>Số điện thoại</th><th>Email</th></tr>";
-            foreach ($this->danhBa as $nguoi) {
-                echo "<tr><td>{$nguoi['ten']}</td><td>{$nguoi['sdt']}</td><td>{$nguoi['email']}</td></tr>";
-            }
-            echo "</table>";
-        }
-    }
-}
-
-// Tạo một đối tượng DanhBa
-$danhBa = new DanhBa();
-
-// Kiểm tra nếu form đã được submit
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Lấy dữ liệu từ form
-    $ten = $_POST["ten"];
-    $sdt = $_POST["sdt"];
-    $email = $_POST["email"];
+    private $danhBa = array();
 
     // Thêm người liên hệ mới vào danh bạ
-    $danhBa->themNguoiLienHe($ten, $sdt, $email);
+    public function themNguoiLienHe($ten, $thongTin) {
+        $this->danhBa[$ten] = $thongTin;
+        // echo "Đã thêm người liên hệ: $ten\n";
+    }
+
+    // Hiển thị thông tin của một người liên hệ dựa trên tên
+    public function hienThiThongTin($ten) {
+        if (isset($this->danhBa[$ten])) {
+            echo "<table border='1'>";
+            echo "<tr><th colspan='2'>Thông tin của $ten</th></tr>";
+            
+            // Phân tách thông tin liên hệ thành các dòng
+            $thongTinArr = explode(', ', $this->danhBa[$ten]);
+    
+            foreach ($thongTinArr as $thongTin) {
+                list($thongTinKey, $thongTinValue) = explode(': ', $thongTin);
+                echo "<tr><td>$thongTinKey</td><td>$thongTinValue</td></tr><br>";
+            }
+    
+            echo "</table>";
+        } else {
+            echo "<br>Không tìm thấy người liên hệ có tên là $ten\n";
+        }
+    }
+
+    // Hiển thị danh sách tất cả các người liên hệ dưới dạng bảng HTML
+    public function hienThiDanhSach() {
+        echo "<table border='1'>";
+        echo "<tr><th>Tên</th><th>Thông tin liên hệ</th></tr>";
+        foreach ($this->danhBa as $ten => $thongTin) {
+            echo "<tr><td>$ten</td><td>$thongTin</td></tr> <br>";
+        }
+        echo "</table>";
+    }
 }
 
+// Sử dụng ứng dụng quản lý danh bạ
+$danhBa = new DanhBa();
+
+$danhBa->themNguoiLienHe("Ngô Văn Đạt", "Email: Ngodat13032004@gmail.com, Điện thoại: 0357717435");
+$danhBa->themNguoiLienHe("Ngô Quang Huy", "Email: NgoHuy123@gmail.com, Điện thoại: 0357717435");
+
+$danhBa->hienThiThongTin("Ngô Văn Đạt");
+$danhBa->hienThiThongTin("Đỗ Văn Toàn");
+
+$danhBa->hienThiDanhSach(); // Sử dụng hàm mới để hiển thị danh sách dưới dạng bảng HTML
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý danh bạ</title>
-</head>
-<body>
-    <h2>Thêm người liên hệ</h2>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        Tên: <input type="text" name="ten" required><br>
-        Số điện thoại: <input type="text" name="sdt" required><br>
-        Email: <input type="email" name="email" required><br>
-        <input type="submit" value="Thêm">
-    </form>
-
-    <h2>Thông tin người liên hệ</h2>
-    <?php
-    // Hiển thị thông tin của một người liên hệ dựa trên tên
-    $danhBa->hienThiThongTinTheoTen("Nguyen Van A");
-    ?>
-
-    <h2>Danh sách người liên hệ</h2>
-    <?php
-    // Hiển thị danh sách tất cả các người liên hệ
-    $danhBa->hienThiDanhSach();
-    ?>
-</body>
-</html>
