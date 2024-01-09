@@ -7,10 +7,13 @@ switch ($url) {
         listProduct();
         break;
     case 'addpr':
-        addPr();
-        break; 
+    addPr();
+    break;
     case 'updatepr':
     updatePr();
+    break;
+    case 'updatecf':
+        
     break;
     case 'deletepr':
     deletePr();

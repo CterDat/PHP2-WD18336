@@ -34,7 +34,13 @@
                 <td><input type="submit" value="ADD PRODUCT"></td>
             </form>
         </tr>
-        <?php if (isset($_GET['id']) && $_GET['id'] == $value['id']) { ?>
+       
+    </table>
+</body>
+</html>
+
+
+<!-- <?php if (isset($_GET['id']) && $_GET['id'] == $value['id']) { ?>
                 <tr>
                     <td colspan="4">
                         <form method="POST" action="index.php?url=updatepr">
@@ -49,7 +55,4 @@
                         </form>
                     </td>
                 </tr>
-            <?php } ?>
-    </table>
-</body>
-</html>
+            <?php } ?> -->

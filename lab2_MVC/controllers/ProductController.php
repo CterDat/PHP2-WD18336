@@ -20,17 +20,24 @@ function addPr(){
         listProduct();
     }
 }
-function updatePr(){
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Xử lý khi nhận dữ liệu POST
-        $id = $_POST['id'];
-        $ten_sp = $_POST['ten_sp'];
-        $gia = $_POST['gia'];
-        updateProduct($id, $ten_sp, $gia);
-        // Thực hiện các xử lý sau khi sửa thông tin sản phẩm thành công
-        echo "Cập nhật sản phẩm thành công!";
-        listProduct(); // Để quay lại trang danh sách sản phẩm sau khi cập nhật thành công
+
+function loadOnePr() {
+    if(isset($_GET['id'])&&($_GET['id']>0)) {
+                    
+                    
+        $pr = getProductById($_GET['id']);
     }
+    include "views/product/updateProduct.php";
+}
+function updatePr(){
+    if(isset($_POST['capnhat']) && ($_POST['capnhat'])){
+        $ten_sp= $_POST['ten_sp'];
+        $gia = $_POST['gia'];
+        updatePr($ten_sp,$gia);
+        $thongbao="Cập nhật thành công";
+    }
+
+    $listOnePr = loadOnePr();
 }
 
 function deletePr(){
