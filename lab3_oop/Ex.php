@@ -27,7 +27,7 @@ class Dog extends Animal{
     }
 
     public function tapTinh(){
-        echo "Con chó đi bằng ".$this->chan." & Sủa ".$this->sua."<br>";
+        echo "Con chó đi bằng ".$this->chan." Chân & Sủa ".$this->sua."<br>";
     }
 }
 class Cat extends Animal{
@@ -38,7 +38,7 @@ class Cat extends Animal{
     }
 
     public function tapTinh(){
-        echo "Con mèo đi bằng ".$this->chan." & Kêu ".$this->keu."<br>";
+        echo "Con mèo đi bằng ".$this->chan." Chân & Kêu ".$this->keu."<br>";
     }
 }
 class Bird extends Animal{
