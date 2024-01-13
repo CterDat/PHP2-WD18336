@@ -2,6 +2,7 @@
 require_once "models/Category.php";
 require_once "models/Product.php";
 session_start();
+class ProductController{
 function listProduct()
 {
     // $check = isset($_GET['check']) ? isset($_GET['check']) : null;
@@ -10,12 +11,15 @@ function listProduct()
     // }else if($check == 'false') {
     //     echo '<script>alert("Cập nhật sản phẩm that bai")</script>';
     // }
-    $istProduct = getAllProduct();
+    //Khởi tạo đối tượng
+    $listProduct = new Product();
+    $listProduct = $listProduct->getAllProduct();
     include "views/product/list.php";
 }
 function addProduct()
 {
-    $listCategory = getAllCategory();
+    $listCategory = new Category();
+    $listCategory = $listCategory->getAllCategory();
     include "views/product/add.php";
 }
 function addProducts($name, $price, $image, $id_category)
@@ -82,7 +86,8 @@ function addProducts($name, $price, $image, $id_category)
             $image_url = $targetFile;
 
             // Gọi hàm insertProduct để thêm sản phẩm vào cơ sở dữ liệu
-            $check = insertProduct($name, $price, $image_url, $id_category);
+            $product = new Product();
+            $check = $product->insertProduct($name, $price, $image_url, $id_category);
 
             if (!$check) {
                 echo '<script>alert("Thêm sản phẩm thành công");</script>';
@@ -101,8 +106,10 @@ function addProducts($name, $price, $image, $id_category)
 function updateView()
 {
     $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : null;
-    $listCategory = getAllCategory();
-    $product = getProduct($product_id);
+    $listCategory = new Category();
+    $listProduct = new Product();
+    $listCategory = $listCategory->getAllCategory();
+    $listProduct = $listProduct->getProduct($product_id);
     include "views/product/update.php";
 }
 
@@ -110,8 +117,8 @@ function postUpdateProduct($name, $price, $image, $id_category)
 {
 
     $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : null;
-
-    $product = getProduct($product_id);
+    $product = new Product();
+    $product = $product->getProduct($product_id);
     // nếu cập nhật ảnh mới thì chạy phần này
     if ($image['size'] != 0) {
         // thư mục sẽ được lưu ảnh vào thư mục image
@@ -126,8 +133,8 @@ function postUpdateProduct($name, $price, $image, $id_category)
         $image_url = $product['image'];
     }
 
-
-    $check = updateProduct($product_id, $name, $price, $image_url, $id_category);
+    $product = new Product();
+    $check = $product->updateProduct($product_id, $name, $price, $image_url, $id_category);
 
     if (!$check) {
         echo '<script>alert("Cap nhat sản phẩm thành công")</script>';
@@ -143,7 +150,10 @@ function postDeleleProduct()
     $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : null;
     // $check = echo '<script>var a = prompt("ban co chac chan muon xoa?")</script>';
 
-    deleteProduct($product_id);
+    $product = new Product();
+    $product->deleteProduct($product_id);
     echo '<script>alert("Xoa sản phẩm thành công")</script>';
     echo '<script>window.location.href = "index.php";</script>';
 }
+}
+?>

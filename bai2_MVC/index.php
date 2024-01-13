@@ -1,24 +1,26 @@
 <?php
 require_once "controllers/ProductController.php";
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
+$productController = new ProductController();
 switch ($url) {
     case '/':
-        listProduct();
+        
+        $productController->listProduct();
         break;
     case 'add-product':
         if (isset($_POST['Save'])) {
-            addProducts($_POST['name'], $_POST['price'],$_FILES['image'],$_POST['id_category']);
+            $productController->addProducts($_POST['name'], $_POST['price'],$_FILES['image'],$_POST['id_category']);
         }
-        addProduct();
+        $productController->addProduct();
         break;
     case 'update-product':
         if (isset($_POST['update'])) {
-            postUpdateProduct($_POST['name'], $_POST['price'],$_FILES['image'],$_POST['id_category']);
+            $productController->postUpdateProduct($_POST['name'], $_POST['price'],$_FILES['image'],$_POST['id_category']);
         }
-        updateView();
+        $productController->updateView();
         break;
     case 'delete-product':
-        postDeleleProduct();
+        $productController->postDeleleProduct();
         break;
 
 }

@@ -29,7 +29,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($istProduct as  $key => $value){?>
+        <?php foreach ($listProduct as  $key => $value){?>
         <tr>
             <th scope="row"><?php echo $value["id"] ?></th>
             <td><?php echo $value["name"] ?></td>

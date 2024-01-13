@@ -1,5 +1,7 @@
 <?php
 require_once "env.php";
+//Tên file và tên class trùng nhau
+class db{
 // tạo kết nối từ project php sang mysql
 function getConnect(){
     $connect = new PDO("mysql:host=" . DBHOST
@@ -16,7 +18,8 @@ function getConnect(){
 // nếu như dùng để lấy danh sách thì sẽ truyền true còn truyền false thì
 //sẽ chạy được các câi truy vấn như thêm sửa xóa
 function getData($query, $getAll = true){
-    $conn = getConnect();
+    //Khi có class thì phải đổi thành $this->getConnect();
+    $conn = $this->getConnect();
     $stmt = $conn->prepare($query);
     $stmt->execute();
     if ($getAll) {
@@ -25,4 +28,5 @@ function getData($query, $getAll = true){
     return $stmt->fetch();
 }
 
+}
 ?>

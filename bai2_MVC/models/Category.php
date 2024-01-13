@@ -1,6 +1,9 @@
 <?php
 require_once "db.php";
+class Category extends db{
 function getAllCategory(){
     $sql = "SELECT * FROM category";
-    return getData($sql);
+    return $this->getData($sql);
 }
+}
+?>
