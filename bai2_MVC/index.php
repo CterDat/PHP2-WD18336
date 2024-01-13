@@ -3,8 +3,7 @@ require_once "controllers/ProductController.php";
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 $productController = new ProductController();
 switch ($url) {
-    case '/':
-        
+    case '/':   
         $productController->listProduct();
         break;
     case 'add-product':
