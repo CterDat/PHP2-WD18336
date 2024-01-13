@@ -86,6 +86,7 @@ function addProducts($name, $price, $image, $id_category)
 
             if (!$check) {
                 echo '<script>alert("Thêm sản phẩm thành công");</script>';
+                echo '<script>window.location.href = "index.php";</script>';
             } else {
                 echo '<script>alert("Lỗi khi thêm sản phẩm vào cơ sở dữ liệu");</script>';
             }
