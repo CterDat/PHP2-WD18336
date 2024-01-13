@@ -1,30 +1,25 @@
 <?php
 require_once "db.php";
-
-//Xây dụng hàm truy vấn để danh sách sản phẩm
-
-function getProduct(){
-    $sql = "SELECT * FROM product";
+function getAllProduct(){
+    $sql = "SELECT pr.id, pr.name, pr.price, pr.image, ct.category_name FROM product AS pr INNER JOIN category AS ct ON ct.id = pr.id_category;";
+    return getData($sql);
+}
+function insertProduct($name, $price, $image, $id_category){
+    $sql = "INSERT INTO product(id, name, price, image, id_category) VALUES('null','$name','$price','$image','$id_category');";
     return getData($sql);
 }
 
-function addProduct($ten_sp, $gia) {
-    $sql = "INSERT INTO product (ten_sp, gia) VALUES ('$ten_sp', '$gia')";
+function getProduct($product_id) {
+    $sql = "SELECT pr.id, pr.name, pr.price, pr.image, ct.category_name FROM product AS pr INNER JOIN category AS ct ON ct.id = pr.id_category WHERE pr.id = '{$product_id}';";
     return getData($sql, false);
 }
 
-function updateProduct($id, $ten_sp, $gia) {
-    $sql = "UPDATE product SET ten_sp = '".$ten_sp."', gia = '".$gia."' WHERE id =".$id;
+function updateProduct($product_id, $name, $price, $image, $id_category) {
+    $sql = "UPDATE product SET name='{$name}', price='{$price}', image='{$image}', id_category='{$id_category}' WHERE id='{$product_id}' ";
     return getData($sql, false);
 }
 
-function getProductById($id) {
-    $sql = "SELECT * FROM product WHERE id = $id";
-    return getData($sql, true);
-}
-
-function deleteProduct($id) {
-    $sql = "DELETE FROM product WHERE id = $id";
+function deleteProduct($product_id) {
+    $sql = "DELETE FROM product WHERE id='{$product_id}'";
     return getData($sql, false);
 }
-
