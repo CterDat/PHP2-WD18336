@@ -13,7 +13,7 @@
     <h2 class="mb-4">Danh sách Sản Phẩm</h2>
 
     <!-- Nút Thêm -->
-    <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a>
+    <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a> <a href="views/cart/list.php" class="btn btn-primary mb-3">Cart</a>
 
     <!-- Bảng Bootstrap -->
     <table class="table">
@@ -37,7 +37,7 @@
             <td><img src="<?php echo $value["image"] ?>" alt="Hình ảnh sản phẩm 1" style="max-width: 100px;"></td>
             <td><?php echo $value["category_name"] ?></td>
             <!-- <td><button type="button" class="btn btn-warning">Sửa</button><button type="button" class="btn btn-danger">Xóa</button></td> -->
-            <td><a href="index.php?url=update-product&product_id=<?php echo $value["id"] ?>" class="btn btn-warning">Sửa</a> <a href="index.php?url=delete-product&product_id=<?php echo $value["id"] ?>" class="btn btn-danger">Xóa</a></button></td>
+            <td><a href="index.php?url=update-product&product_id=<?php echo $value["id"] ?>" class="btn btn-warning">Sửa</a> <a href="index.php?url=delete-product&product_id=<?php echo $value["id"] ?>" class="btn btn-danger">Xóa</a></button> <a href="index.php?url=add&product_id=<?php echo $value["id"] ?>&quantity=1" class="btn btn-success">Add to Cart</a></td>
             
             <!-- <button type="button" class="btn btn-danger  btn-delete">Xóa</button> -->
         </tr>
