@@ -23,7 +23,7 @@
     <h2 class="mb-4">Danh sách Sản Phẩm</h2>
 
     <!-- Nút Thêm -->
-    <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a> <a href="index.php?url=viewCart" class="btn btn-primary mb-3">Cart</a>
+    <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a> <a href="index.php?url=viewCart" class="btn btn-primary mb-3">Cart</a> <a href="views/account/login.php" class="btn btn-primary mb-3">Đăng Nhập</a>
 
     <!-- Bảng Bootstrap -->
     <table class="table">
