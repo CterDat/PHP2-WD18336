@@ -1,7 +1,7 @@
 <?php
 require_once "models/Category.php";
 require_once "models/Product.php";
-session_start();
+// session_start();
 class ProductController{
 function listProduct()
 {
@@ -154,6 +154,19 @@ function postDeleleProduct()
     $product->deleteProduct($product_id);
     echo '<script>alert("Xoa sản phẩm thành công")</script>';
     echo '<script>window.location.href = "index.php";</script>';
+}
+function listAdmin()
+{
+    // $check = isset($_GET['check']) ? isset($_GET['check']) : null;
+    // if($check == 'true'){
+    //     echo '<script>alert("Cập nhật sản phẩm thành công")</script>';
+    // }else if($check == 'false') {
+    //     echo '<script>alert("Cập nhật sản phẩm that bai")</script>';
+    // }
+    //Khởi tạo đối tượng
+    $listProduct = new Product();
+    $listProduct = $listProduct->getAllProduct();
+    include "views/admin/product/list.php";
 }
 }
 ?>

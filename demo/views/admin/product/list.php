@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +20,12 @@
 <body>
 
 <div class="container mt-5">
-    <h2 class="mb-4">Giỏ Hàng</h2>
-
-    <!-- Nút Thêm -->
-    <a href="index.php" class="btn btn-primary mb-3">Home</a>
+    <h2 class="mb-4">Danh sách Sản Phẩm</h2>
+    <a href="index.php" class="btn btn-primary mb-3">Trang Chủ</a>
+    <a href="index.php?url=listCategory" class="btn btn-primary mb-3">Category</a>
+    <br>
+        <!-- Nút Thêm -->
+    <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a> 
 
     <!-- Bảng Bootstrap -->
     <table class="table">
@@ -34,41 +35,23 @@
             <th scope="col">Tên Sản Phẩm</th>
             <th scope="col">Giá</th>
             <th scope="col">Hình Ảnh</th>
-            <th scope="col">Số lượng</th>
-            <th scope="col">Thành Tiền</th>
+            <th scope="col">Danh Mục</th>
             <th scope="col">Thao Tác</th>
+
         </tr>
         </thead>
         <tbody>
-        <?php
-        $tong = 0;
-        $i = 0;
-        foreach ($_SESSION['mycart'] as  $cart){
-        $ttien=$cart[2]*$cart[4];
-        $tong += $ttien;
-        $delCart = '<a href="index.php?url=delCart&idcart='.$i.'"><input type="button" class="btn btn-warning" value="Xóa"></a>';
-        $addCart = '<a href="index.php?url=bill"><input type="button" class="btn btn-primary mb-3"  value="Xác nhận đặt hàng"></a>';
-    
-        ?>
+        <?php foreach ($listProduct as  $key => $value){?>
         <tr>
-            <th scope="row"><?php echo $cart[0] ?></th>
-            <td><?php echo $cart[1] ?></td>
-            <td><?php echo $cart[2] ?></td>
-            <td><?php echo $cart[3] ?></td>
-            <td><?php echo $cart[4] ?></td>
-            <td><?php echo $cart[5] ?></td>
-            <td><?php echo $delCart; ?> <?php ?></td>
-            
+            <th scope="row"><?php echo $value["id"] ?></th>
+            <td><?php echo $value["name"] ?></td>
+            <td><?php echo $value["price"] ?></td>
+            <td><img src="<?php echo $value["image"] ?>" alt="Hình ảnh sản phẩm 1" style="max-width: 100px;"></td>
+            <td><?php echo $value["category_name"] ?></td>
+            <td><a href="index.php?url=update-product&product_id=<?php echo $value["id"] ?>" class="btn btn-warning">Sửa</a> <a href="index.php?url=delete-product&product_id=<?php echo $value["id"] ?>" class="btn btn-danger">Xóa</a></button></td>
             <!-- <button type="button" class="btn btn-danger  btn-delete">Xóa</button> -->
         </tr>
-        <?php $i+=1; ?>
         <?php } ?>
-        <tr>
-        <td colspan="5">Tổng tiền</td>
-        <td><?php echo $tong ?></td>
-        <td><?php echo $addCart ?></td>
-        </tr>
-
         </tbody>
     </table>
     <!-- Kết thúc Bảng Bootstrap -->

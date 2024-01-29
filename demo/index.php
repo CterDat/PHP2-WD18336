@@ -1,12 +1,20 @@
 <?php
 require_once "controllers/ProductController.php";
 require_once "controllers/CartController.php";
+require_once "controllers/AccountController.php";
+session_start();
+ob_start();
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 $productController = new ProductController();
 $CartController = new CartController();
+$AccountController = new AccountController();
+
 switch ($url) {
     case '/':   
         $productController->listProduct();
+        break;
+    case 'admin':
+        $productController->listAdmin();
         break;
     case 'add-product':
         if (isset($_POST['Save'])) {
@@ -35,5 +43,17 @@ switch ($url) {
     case 'bill':
         # code...
         break;
-
+    case 'login':
+        if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
+        $AccountController->login();
+        }
+        include "views/account/login.php";
+        break;
+    case 'signin':
+        if (isset($_POST['dangky']) && ($_POST['dangky'])) {
+        $AccountController->signIn();
+        }
+        include "views/account/register.php";
+        break;
+    ob_end_flush();
 }

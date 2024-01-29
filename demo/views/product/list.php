@@ -23,7 +23,7 @@
     <h2 class="mb-4">Danh sách Sản Phẩm</h2>
 
     <!-- Nút Thêm -->
-    <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a> <a href="index.php?url=viewCart" class="btn btn-primary mb-3">Cart</a> <a href="views/account/login.php" class="btn btn-primary mb-3">Đăng Nhập</a>
+     <a href="index.php?url=viewCart" class="btn btn-primary mb-3">Cart</a> <a href="index.php?url=login" class="btn btn-primary mb-3">Đăng Nhập</a> <a href="index.php?url=admin" class="btn btn-primary mb-3">Admin</a>
 
     <!-- Bảng Bootstrap -->
     <table class="table">
@@ -35,7 +35,6 @@
             <th scope="col">Hình Ảnh</th>
             <th scope="col">Danh Mục</th>
             <th scope="col">Thao Tác</th>
-            <th>Chức năng</th>
 
         </tr>
         </thead>
@@ -47,13 +46,13 @@
             <td><?php echo $value["price"] ?></td>
             <td><img src="<?php echo $value["image"] ?>" alt="Hình ảnh sản phẩm 1" style="max-width: 100px;"></td>
             <td><?php echo $value["category_name"] ?></td>
-            <td><a href="index.php?url=update-product&product_id=<?php echo $value["id"] ?>" class="btn btn-warning">Sửa</a> <a href="index.php?url=delete-product&product_id=<?php echo $value["id"] ?>" class="btn btn-danger">Xóa</a></button></td>
+            
             <td><form action="index.php?url=addtocart" method="post">
             <input type="hidden" name="id" value="<?=  $value["id"]?>">
             <input type="hidden" name="name" value="<?= $value["name"]?>">
             <input type="hidden" name="price" value="<?= $value["price"]?>">
             <input type="hidden" name="img" value="<?= $value["image"]?>">
-            <input type="submit" name="addtocart" class="btn btn-warning" value="ADD">
+            <input type="submit" name="addtocart" class="btn btn-warning" value="Thêm vào giỏ hàng">
             </form></td>
             
             <!-- <button type="button" class="btn btn-danger  btn-delete">Xóa</button> -->
