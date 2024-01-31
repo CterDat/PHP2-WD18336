@@ -1,7 +1,15 @@
 <?php
 namespace App\Controllers;
-class ProductController {
+use App\Models\Product;
+class ProductController extends BaseController{
+    public $product;
+
     public function __construct() {
-        echo "Đây là trang ProductController";
+        $this->product = new Product();
+    }
+
+    public function index(){
+        $products = $this->product->getProduct();
+        return $this->render('product.index', compact('products'));
     }
 }

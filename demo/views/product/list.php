@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +24,24 @@
     <h2 class="mb-4">Danh sách Sản Phẩm</h2>
 
     <!-- Nút Thêm -->
-     <a href="index.php?url=viewCart" class="btn btn-primary mb-3">Cart</a> <a href="index.php?url=login" class="btn btn-primary mb-3">Đăng Nhập</a> <a href="index.php?url=admin" class="btn btn-primary mb-3">Admin</a>
+     <a href="index.php?url=viewCart" class="btn btn-primary mb-3">Cart</a>
+     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']){ ?>
+     <a href="index.php?url=exit" class="btn btn-primary mb-3">Thoát</a>
+     
+     <?php }else { ?>
+     <a href="index.php?url=login" class="btn btn-primary mb-3">Đăng Nhập</a>
+    <?php } ?>
+    <?php
+        if (isset($_SESSION['role']) && $_SESSION['role']) {
+            // Hiển thị thẻ "Admin"
+            echo '<a href="index.php?url=admin" class="btn btn-primary mb-3">Admin</a>';
+        }
+        ?>
+
+    
+
+   
+     
 
     <!-- Bảng Bootstrap -->
     <table class="table">

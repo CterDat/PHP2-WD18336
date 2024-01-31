@@ -4,22 +4,28 @@ require_once "models/Account.php";
 
 class AccountController extends Account {
     public function login() {
-        
+    
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = $_POST['user'];
             $pass = $_POST['pass'];
-            $checkuser = $this->checkuser($user, $pass); // Gọi phương thức checkuser() từ lớp cha
-            if (is_array($checkuser)) {
-                $_SESSION['user'] = $checkuser;
-                $_SESSION['pass'] = $checkuser;
-                echo '<script>alert("Đăng kí thành công");</script>';
+
+            $account = new Account();
+            $loginResult = $account->checkuser($user, $pass);
+
+            if ($loginResult) {
+                $_SESSION['logged_in'] = true;
+                $_SESSION['role'] = $loginResult['role'];
+                echo '<script>alert("Đăng nhập thành công");</script>'; 
                 echo '<script>window.location.href = "index.php";</script>';
             } else {
-                $thongbao = "Tài khoản không tồn tại!";
+                echo '<script>alert("Tài khoản không tồn tại");<script>';
             }
+        }
         
     }
 
-    public function signIn() {       
+    public function register() {     
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {  
             $email = $_POST['email'];
             $user = $_POST['user'];
             $pass = $_POST['pass'];
@@ -33,6 +39,13 @@ class AccountController extends Account {
             } else {
                 echo '<script>alert("Không Đăng kí được");</script>';
             }
-            exit;    
+        }
+        
     }
+
+    public function exit() {
+        echo '<script>alert("Đã Thoát");</script>';
+        echo '<script>window.location.href = "index.php";</script>';
+    }
+
 }

@@ -8,7 +8,6 @@ $url = isset($_GET['url']) ? $_GET['url'] : "/";
 $productController = new ProductController();
 $CartController = new CartController();
 $AccountController = new AccountController();
-
 switch ($url) {
     case '/':   
         $productController->listProduct();
@@ -44,16 +43,16 @@ switch ($url) {
         # code...
         break;
     case 'login':
-        if (isset($_POST['dangnhap']) && ($_POST['dangnhap'])) {
-        $AccountController->login();
-        }
+        $AccountController->login();    
         include "views/account/login.php";
         break;
     case 'signin':
-        if (isset($_POST['dangky']) && ($_POST['dangky'])) {
-        $AccountController->signIn();
-        }
+        $AccountController->register();
         include "views/account/register.php";
+        break;
+    case 'exit':
+        session_unset();
+        $AccountController->exit();
         break;
     ob_end_flush();
 }

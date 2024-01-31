@@ -1,7 +1,12 @@
 <?php
 namespace App\Models;
-class Product{
-    public function __construct() {
-        echo "Đây là trang Product";
+class Product extends BaseModel{
+    protected $table = "product";
+
+    //lấy danh sách sản phẩm
+    public function getProduct(){
+        $sql = "select * from $this->table";
+        $this->setQuery($sql);
+        return $this->loadAllRows();
     }
 }
