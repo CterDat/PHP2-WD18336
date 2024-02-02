@@ -16,15 +16,15 @@ $router->filter('auth', function(){
 // khu vực cần quan tâm -----------
 // bắt đầu định nghĩa ra các đường dẫn
 $router->get('/', function(){
-    return "trang chủ";
+    // return "trang chủ";
 });
 //định nghĩa đường dẫn trỏ đến Product Controller
 $router->get('list-product',[App\Controllers\ProductController::class,'index']);
 $router->get('add-product',[App\Controllers\ProductController::class,'addProduct']);
 $router->post('post-product',[App\Controllers\ProductController::class,'postProduct']);
 $router->get('detail-product/{id}',[App\Controllers\ProductController::class,'detail']);
-
 $router->post('edit-product/{id}',[App\Controllers\ProductController::class,'editProduct']);
+$router->get('delete-product/{id}',[App\Controllers\ProductController::class,'deleteProduct']);
 // khu vực cần quan tâm -----------
 //$router->get('test', [App\Controllers\ProductController::class, 'index']);
 

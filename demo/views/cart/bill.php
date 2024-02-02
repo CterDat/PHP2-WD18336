@@ -21,13 +21,58 @@
 <body>
 
 <div class="container mt-5">
-    <h2 class="mb-4">Giỏ Hàng</h2>
+    <h2 class="mb-4">Thanh Toán</h2>
 
     <!-- Nút Thêm -->
     <a href="index.php" class="btn btn-primary mb-3">Home</a>
+    <form action="index.php?url=billconfirm" method="post" >
+    <table class="table">
+    <h3 class="mb-3">Thông tin khác hàng</h3>
+    <thead>
+        <?php
+        if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+        $email = $_SESSION['email'];
+        $address = $_SESSION['address'];
+        $tel = $_SESSION['tel'];
 
+        }else{
+            $name = "";
+            $address = "";
+            $email = "";
+            $tel = "";
+        }
+        ?>
+        <tr>
+            <th scope="col">Người đặt hàng</th>
+            <td><input type="text" class="form-control form-control" name="name" value="<?=$user?>"></td>
+        </tr>
+        <tr>
+            <th scope="col">Địa chỉ</th>
+            <td><input type="text" class="form-control form-control" name="diachi" value="<?=$address?>"></td>
+        </tr>
+        <tr>
+            <th scope="col">Email</th>
+            <td><input type="text" class="form-control form-control" name="email" value="<?=$email?>"></td>
+        </tr>
+        <tr>
+            <th scope="col">SĐT</th>
+            <td><input type="text" class="form-control form-control" name="sdt" value="<?=$tel?>"></td>
+        </tr>
+    </thead>
+    </table>
+
+    <table class="table">
+    <h3 class="mb-3">Phương thức thanh toán</h3>
+        <thead>
+            <tr><p><input type="radio" name="pttt" id="" value="1" required> Thanh toán khi giao hàng</p>
+            <p><input type="radio" name="pttt" id="" value="2" required> Chuyển khoản ngân hàng</p></tr>
+
+        </thead>
+    </table>
     <!-- Bảng Bootstrap -->
     <table class="table">
+    <h3 class="mb-3">Giỏ hàng</h3>
         <thead>
         <tr>
             <th scope="col">ID</th>
@@ -47,8 +92,8 @@
         $ttien=$cart[2]*$cart[4];
         $tong += $ttien;
         $delCart = '<a href="index.php?url=delCart&idcart='.$i.'"><input type="button" class="btn btn-warning" value="Xóa"></a>';
-        $addCart = '<a href="index.php?url=bill"><input type="button" class="btn btn-primary mb-3"  value="Xác nhận đặt hàng"></a>';
-    
+        $addCart = '<input type="submit" name="order_confirm" class="btn btn-primary mb-3"  value="Xác nhận đặt hàng">';
+        
         ?>
         <tr>
             <th scope="row"><?php echo $cart[0] ?></th>
@@ -66,14 +111,16 @@
         <tr>
         <td colspan="5">Tổng tiền</td>
         <td><?php echo $tong ?></td>
-        <?php if (!empty($_SESSION["mycart"])) { ?>
+            
+            <input type="hidden" name="name" value="<?= $cart[1]?>">
+            <input type="hidden" name="tongtien" value="<?= $cart[5]?>">
         <td><?php echo $addCart ?></td>
-        <?php } ?>
         </tr>
 
         </tbody>
     </table>
     <!-- Kết thúc Bảng Bootstrap -->
+    </form>
 </div>
 
 </body>

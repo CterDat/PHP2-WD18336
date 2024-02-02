@@ -15,6 +15,10 @@ class AccountController extends Account {
             if ($loginResult) {
                 $_SESSION['logged_in'] = true;
                 $_SESSION['role'] = $loginResult['role'];
+                $_SESSION['user'] = $loginResult['user'];
+                $_SESSION['address'] = $loginResult['address'];
+                $_SESSION['email'] = $loginResult['email'];
+                $_SESSION['tel'] = $loginResult['tel'];
                 echo '<script>alert("Đăng nhập thành công");</script>'; 
                 echo '<script>window.location.href = "index.php";</script>';
             } else {

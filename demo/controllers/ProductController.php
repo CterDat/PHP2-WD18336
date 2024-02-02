@@ -20,7 +20,7 @@ function addProduct()
 {
     $listCategory = new Category();
     $listCategory = $listCategory->getAllCategory();
-    include "views/product/add.php";
+    include "views/admin/product/add.php";
 }
 function addProducts($name, $price, $image, $id_category)
 {
@@ -91,7 +91,7 @@ function addProducts($name, $price, $image, $id_category)
 
             if (!$check) {
                 echo '<script>alert("Thêm sản phẩm thành công");</script>';
-                echo '<script>window.location.href = "index.php";</script>';
+                echo '<script>window.location.href = "index.php?url=admin";</script>';
             } else {
                 echo '<script>alert("Lỗi khi thêm sản phẩm vào cơ sở dữ liệu");</script>';
             }
@@ -110,7 +110,7 @@ function updateView()
     $listProduct = new Product();
     $listCategory = $listCategory->getAllCategory();
     $listProduct = $listProduct->getProduct($product_id);
-    include "views/product/update.php";
+    include "views/admin/product/update.php";
 }
 
 function postUpdateProduct($name, $price, $image, $id_category)
@@ -138,10 +138,10 @@ function postUpdateProduct($name, $price, $image, $id_category)
 
     if (!$check) {
         echo '<script>alert("Cap nhat sản phẩm thành công")</script>';
-        echo '<script>window.location.href = "index.php";</script>';
+        echo '<script>window.location.href = "index.php?url=admin";</script>';
     } else {
         echo '<script>alert("Cap nhat sản phẩm that bai")</script>';
-        echo '<script>window.location.href = "index.php";</script>';
+        echo '<script>window.location.href = "index.php?url=admin";</script>';
     }
 }
 
@@ -153,7 +153,7 @@ function postDeleleProduct()
     $product = new Product();
     $product->deleteProduct($product_id);
     echo '<script>alert("Xoa sản phẩm thành công")</script>';
-    echo '<script>window.location.href = "index.php";</script>';
+    echo '<script>window.location.href = "index.php?url=admin";</script>';
 }
 function listAdmin()
 {

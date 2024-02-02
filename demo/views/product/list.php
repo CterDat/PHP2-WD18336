@@ -25,6 +25,7 @@
 
     <!-- Nút Thêm -->
      <a href="index.php?url=viewCart" class="btn btn-primary mb-3">Cart</a>
+     <a href="index.php?url=mybill" class="btn btn-primary mb-3">Bill</a>
      <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']){ ?>
      <a href="index.php?url=exit" class="btn btn-primary mb-3">Thoát</a>
      

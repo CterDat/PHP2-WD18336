@@ -1,13 +1,12 @@
 <?php
-//Lưu ý Tạo Folder app => chuyển mvc vô
-// include_once "models/Product.php";
-// include_once "controllers/ProductController.php";
+session_start();
 require_once "env.php";
 require_once "vendor/autoload.php";
 require_once "common/route.php";
-use App\Controllers\ProductController;
+// use App\Controllers\ProductController;
 
 
-$product = new ProductController();
-var_dump($product->index());
+// $product = new ProductController();
+// $product->index();
+
 

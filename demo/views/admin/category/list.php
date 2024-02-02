@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bao gồm Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Bảng Sản Phẩm</title>
+    <title>Bảng Loại sản phẩm</title>
     <style>
     #totalProduct {
       color: #fff;
@@ -20,7 +20,7 @@
 <body>
 
 <div class="container mt-5">
-    <h2 class="mb-4">Danh sách Sản Phẩm</h2>
+    <h2 class="mb-4">Danh sách Loại sản phẩm</h2>
     <a href="index.php" class="btn btn-primary mb-3">Trang Chủ</a>
     <a href="index.php?url=admin" class="btn btn-primary mb-3">Product</a>
     <a href="index.php?url=listCategory" class="btn btn-primary mb-3">Category</a>

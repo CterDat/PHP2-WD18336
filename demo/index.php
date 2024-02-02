@@ -8,6 +8,19 @@ $url = isset($_GET['url']) ? $_GET['url'] : "/";
 $productController = new ProductController();
 $CartController = new CartController();
 $AccountController = new AccountController();
+// if (isset($_SESSION['user'])) {
+//     $username = $_SESSION['user'];
+    
+//         $email = $_SESSION['email'];
+//         $address = $_SESSION['address'];
+//         $tel = $_SESSION['tel'];
+//     echo "Thông tin tài khoản: $username";
+//     echo "Thông tin tài khoản: $email";
+//     echo "Thông tin tài khoản: $address";
+//     echo "Thông tin tài khoản: $tel";
+// } else {
+//     echo "Bạn chưa đăng nhập.";
+// }
 switch ($url) {
     case '/':   
         $productController->listProduct();
@@ -40,7 +53,16 @@ switch ($url) {
         include "views/cart/viewCart.php";
         break;
     case 'bill':
-        # code...
+        include "views/cart/bill.php";
+        break;
+    case 'mybill':
+        $CartController->loadAllBill();
+        include "views/cart/mybill.php";
+        break;
+    case 'billconfirm':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $CartController->order();
+        }
         break;
     case 'login':
         $AccountController->login();    
