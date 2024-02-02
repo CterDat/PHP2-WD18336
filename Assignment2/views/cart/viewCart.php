@@ -41,6 +41,12 @@
         </thead>
         <tbody>
         <?php
+        $cart = new Cart();
+
+        // Kiểm tra xem biến $_SESSION["mycart"] đã được khởi tạo hay chưa
+        if (isset($_SESSION["mycart"]) && is_array($_SESSION["mycart"])) {
+            $mycart = $_SESSION["mycart"];
+        
         $tong = 0;
         $i = 0;
         foreach ($_SESSION['mycart'] as  $cart){
@@ -68,7 +74,7 @@
         <td><?php echo $tong ?></td>
         <?php if (!empty($_SESSION["mycart"])) { ?>
         <td><?php echo $addCart ?></td>
-        <?php } ?>
+        <?php }}?>
         </tr>
 
         </tbody>

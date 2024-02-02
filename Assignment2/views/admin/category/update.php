@@ -16,11 +16,7 @@
             <div class="mb-3">
                 <label for="tenSanPham" class="form-label">Tên Sản Phẩm</label>
                 <input type="text" class="form-control" id="name" name="category_name" value="<?php echo $listCategory['category_name'] ?>" placeholder="Nhập tên sản phẩm">
-            </div>
-
-            
-              
-            </div>
+        </div>
         <?php } ?>
         
 

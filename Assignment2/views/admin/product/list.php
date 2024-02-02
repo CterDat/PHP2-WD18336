@@ -24,6 +24,7 @@
     <a href="index.php" class="btn btn-primary mb-3">Trang Chủ</a>
     <a href="index.php?url=admin" class="btn btn-primary mb-3">Product</a>
     <a href="index.php?url=listCategory" class="btn btn-primary mb-3">Category</a>
+    <a href="index.php?url=showcart" class="btn btn-primary mb-3">Cart</a>
     <br>
         <!-- Nút Thêm -->
     <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a> 

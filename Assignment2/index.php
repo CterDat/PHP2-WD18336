@@ -46,7 +46,7 @@ switch ($url) {
         if (isset($_POST['update'])) {
             $CategoryController->postUpdateCategory($_POST['category_name']);
         }
-        $CategoryController->updateView1();
+        $CategoryController->updateView();
         break;
     case 'add-product':
         if (isset($_POST['Save'])) {
@@ -82,6 +82,15 @@ switch ($url) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $CartController->order();
         }
+        break;
+    case 'showcart':
+        $CartController->loadAllBillAdmin();
+        break;
+    case 'update-cart':
+        if (isset($_POST['update'])) {
+            $CartController->postUpdateCart($_POST['trangthai']);
+        }
+        $CartController->updateView();
         break;
     case 'login':
         $AccountController->login();    

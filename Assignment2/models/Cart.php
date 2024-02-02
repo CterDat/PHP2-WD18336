@@ -40,10 +40,6 @@ function loadone_tbl($id_order){
     return $this->getData($sql);
               
 }
-function update_tbl($id_order,$trangthai){
-    $sql = "update tbl_order set trangthai='".$trangthai."'where id_order=".$id_order;
-    return $this->getData($sql, false);
-}
 function addOrder($user, $sdt, $email, $diachi, $tongtien, $pttt, $name){
     $sql="INSERT INTO tbl_order (user, sdt, email, diachi, tongtien, pttt, name) VALUES ('$user', '$sdt', '$email', '$diachi', $tongtien, $pttt, '$name');";
     return $this->getData($sql);
@@ -67,11 +63,15 @@ function loadAllBill(){
     ";
     return $this->getData($sql);
 }
+function getCart($id_order){
+    $sql = "SELECT id_order,trangthai FROM tbl_order  WHERE id_order = '{$id_order}';";
+    return $this->getData($sql, false);
 }
-// function addOrderDetail($id_order, $id_pro, $giamua, $soluong, $thanhtien){
-//     $sql="INSERT INTO order_detail (id_order, id_pro, giamua, soluong, thanhtien) VALUES ($id_order, $id_pro, $giamua, $soluong, $thanhtien );";
-//     return $this->getData($sql);
-// }
 
+function updateCart($id_order, $trangthai) {
+    $sql = "UPDATE tbl_order SET trangthai ='{$trangthai}' WHERE id_order='{$id_order}' ";
+    return $this->getData($sql, false);
+}
 
+}
 ?>

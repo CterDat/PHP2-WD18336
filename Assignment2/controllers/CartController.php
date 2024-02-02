@@ -58,5 +58,41 @@ function loadAllBill(){
     include "views/cart/mybill.php";
 }
 
+function loadAllBillAdmin(){
+    $cart = new Cart();
+    $cart = $cart->loadAllBill();
+    include "views/admin/cart/list.php";
+}
+
+
+function updateView()
+{
+    $id_order = isset($_GET['id_order']) ? $_GET['id_order'] : null;
+    $listCart= new Cart();
+    // $listProduct = new Product();
+    $listCart = $listCart->getCart($id_order);
+    // $listProduct = $listProduct->getProduct($product_id);
+    include "views/admin/cart/update.php";
+}
+
+function postUpdateCart($trangthai)
+{
+
+    $id_order = isset($_GET['id_order']) ? $_GET['id_order'] : null;
+    // $category = new Category();
+    // $category = $category->getCategory($category_id);
+
+    $cart = new Cart();
+    $check = $cart->updateCart($id_order, $trangthai);
+
+    if (!$check) {
+        echo '<script>alert("Cap nhat sản phẩm thành công")</script>';
+        echo '<script>window.location.href = "index.php?url=showcart";</script>';
+    } else {
+        echo '<script>alert("Cap nhat sản phẩm that bai")</script>';
+        echo '<script>window.location.href = "index.php?url=showcart";</script>';
+    }
+}
+
 }
 ?>
