@@ -26,30 +26,26 @@
     <a href="index.php?url=listCategory" class="btn btn-primary mb-3">Category</a>
     <br>
         <!-- Nút Thêm -->
-    <a href="index.php?url=add-product" class="btn btn-primary mb-3">Thêm</a> 
+    <a href="index.php?url=add-category" class="btn btn-primary mb-3">Thêm</a> 
 
     <!-- Bảng Bootstrap -->
     <table class="table">
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Tên Sản Phẩm</th>
-            <th scope="col">Giá</th>
-            <th scope="col">Hình Ảnh</th>
-            <th scope="col">Danh Mục</th>
-            <th scope="col">Thao Tác</th>
+            <th scope="col">Tên Loại</th>
+            <th scope="col">Thao tác</th>
+            
 
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($listProduct as  $key => $value){?>
+        <?php foreach ($listCategory as  $key => $value){?>
         <tr>
             <th scope="row"><?php echo $value["id"] ?></th>
-            <td><?php echo $value["name"] ?></td>
-            <td><?php echo $value["price"] ?></td>
-            <td><img src="<?php echo $value["image"] ?>" alt="Hình ảnh sản phẩm 1" style="max-width: 100px;"></td>
-            <td><?php echo $value["category_name"] ?></td>
-            <td><a href="index.php?url=update-product&product_id=<?php echo $value["id"] ?>" class="btn btn-warning">Sửa</a> <a href="index.php?url=delete-product&product_id=<?php echo $value["id"] ?>" class="btn btn-danger">Xóa</a></button></td>
+            <th scope="row"><?php echo $value["category_name"] ?></th>
+            
+            <td><a href="index.php?url=update-category&category_id=<?php echo $value["id"] ?>" class="btn btn-warning">Sửa</a> <a href="index.php?url=delete-category&category_id=<?php echo $value["id"] ?>" class="btn btn-danger">Xóa</a></button></td>
             <!-- <button type="button" class="btn btn-danger  btn-delete">Xóa</button> -->
         </tr>
         <?php } ?>

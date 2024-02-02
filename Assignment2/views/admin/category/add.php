@@ -26,35 +26,16 @@
         // unset($_SESSION['error_messages']);
     }
     ?>
-    <form action="index.php?url=add-product" method="POST" enctype="multipart/form-data">
+    <form action="index.php?url=add-category" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="tenSanPham" class="form-label">Tên Sản Phẩm</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên sản phẩm">
+            <input type="text" class="form-control" id="name" name="category_name" placeholder="Nhập tên sản phẩm">
             <?php 
                 echo(!empty($error_messages['name']['required']))?'<span style="color: red;">'.$error_messages['name']['required'].'</span>':false;
                 echo(!empty($error_messages['name']['length']))?'<span style="color: red;">'.$error_messages['name']['length'].'</span>':false;
             ?>
             
             
-        </div>
-
-        <div class="mb-3">
-            <label for="gia" class="form-label">Giá</label>
-            <input type="number" class="form-control" id="price" name="price" placeholder="Nhập giá sản phẩm">
-        </div>
-
-        <div class="mb-3">
-            <label for="hinhAnh" class="form-label">Hình Ảnh</label>
-            <input type="file" class="form-control" name="image" id="image">
-        </div>
-
-        <div class="mb-3">
-            <label for="danhMuc" class="form-label">Danh Mục</label>
-            <select class="form-select" id="id_category" name="id_category">
-                <?php foreach ($listCategory as $valueCT){ ?>
-                <option value="<?php echo $valueCT["id"] ?>"><?php echo $valueCT["category_name"] ?></option>
-                <?php } ?>
-            </select>
         </div>
 
         <button type="submit" class="btn btn-primary" name="Save">Lưu</button>

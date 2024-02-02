@@ -91,9 +91,9 @@ function addProducts($name, $price, $image, $id_category)
 
             if (!$check) {
                 echo '<script>alert("Thêm sản phẩm thành công");</script>';
-                echo '<script>window.location.href = "index.php?url=admin";</script>';
+                echo '<script>window.location.href = "index.php?url=listCategory";</script>';
             } else {
-                echo '<script>alert("Lỗi khi thêm sản phẩm vào cơ sở dữ liệu");</script>';
+                echo '<script>alert("Lỗi khi thêm loại vào cơ sở dữ liệu");</script>';
             }
         } else {
             echo '<script>alert("Lỗi khi upload ảnh sản phẩm");</script>';

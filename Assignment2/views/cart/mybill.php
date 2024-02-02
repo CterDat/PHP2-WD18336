@@ -50,22 +50,19 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($listProduct as  $key => $value){?>
+        <?php foreach ($cart as  $key => $value){
+            // extract($key);
+            ?>
         <tr>
-            <th scope="row"><?php echo $value["id"] ?></th>
+            <th scope="row"><?php echo $value["id_order"] ?></th>
             <td><?php echo $value["name"] ?></td>
-            <td><?php echo $value["price"] ?></td>
-            <td><img src="<?php echo $value["image"] ?>" alt="Hình ảnh sản phẩm 1" style="max-width: 100px;"></td>
-            <td><?php echo $value["category_name"] ?></td>
-            
-            <td><form action="index.php?url=addtocart" method="post">
-            <input type="hidden" name="id" value="<?=  $value["id"]?>">
-            <input type="hidden" name="name" value="<?= $value["name"]?>">
-            <input type="hidden" name="price" value="<?= $value["price"]?>">
-            <input type="hidden" name="img" value="<?= $value["image"]?>">
-            <input type="submit" name="addtocart" class="btn btn-warning" value="Thêm vào giỏ hàng">
-            </form></td>
-            
+            <td><?php echo $value["user"] ?></td>
+            <td><?php echo $value["sdt"] ?></td>
+            <td><?php echo $value["email"] ?></td>
+            <td><?php echo $value["diachi"] ?></td>
+            <td><?php echo $value["tongtien"] ?></td>
+            <td><?php echo $value["pttt_text"] ?></td>
+            <td><?php echo $value['trangthai_text'] ?></td>   
             <!-- <button type="button" class="btn btn-danger  btn-delete">Xóa</button> -->
         </tr>
         <?php } ?>

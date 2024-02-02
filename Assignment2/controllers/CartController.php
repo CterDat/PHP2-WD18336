@@ -54,7 +54,8 @@ function order() {
 
 function loadAllBill(){
     $cart = new Cart();
-    $cart->loadAllBill();
+    $cart = $cart->loadAllBill();
+    include "views/cart/mybill.php";
 }
 
 }

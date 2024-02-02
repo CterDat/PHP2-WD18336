@@ -2,12 +2,14 @@
 require_once "controllers/ProductController.php";
 require_once "controllers/CartController.php";
 require_once "controllers/AccountController.php";
+require_once "controllers/CategoryController.php";
 session_start();
 ob_start();
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 $productController = new ProductController();
 $CartController = new CartController();
 $AccountController = new AccountController();
+$CategoryController = new CategoryController();
 // if (isset($_SESSION['user'])) {
 //     $username = $_SESSION['user'];
     
@@ -27,6 +29,24 @@ switch ($url) {
         break;
     case 'admin':
         $productController->listAdmin();
+        break;
+    case 'listCategory':
+        $CategoryController->listCategory();
+        break;
+    case 'add-category':
+        if (isset($_POST['Save'])) {
+            $CategoryController->addCategory($_POST['category_name']);
+        }
+        include "views/admin/category/add.php";
+        break;
+    case 'delete-category':
+        $CategoryController->postDeleleCategory();
+        break;
+    case 'update-category':
+        if (isset($_POST['update'])) {
+            $CategoryController->postUpdateCategory($_POST['category_name']);
+        }
+        $CategoryController->updateView1();
         break;
     case 'add-product':
         if (isset($_POST['Save'])) {
@@ -57,7 +77,6 @@ switch ($url) {
         break;
     case 'mybill':
         $CartController->loadAllBill();
-        include "views/cart/mybill.php";
         break;
     case 'billconfirm':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

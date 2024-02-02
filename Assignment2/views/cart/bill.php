@@ -45,7 +45,7 @@
         ?>
         <tr>
             <th scope="col">Người đặt hàng</th>
-            <td><input type="text" class="form-control form-control" name="name" value="<?=$user?>"></td>
+            <td><input type="text" class="form-control form-control" name="user" value="<?=$user?>"></td>
         </tr>
         <tr>
             <th scope="col">Địa chỉ</th>

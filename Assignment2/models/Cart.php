@@ -49,7 +49,22 @@ function addOrder($user, $sdt, $email, $diachi, $tongtien, $pttt, $name){
     return $this->getData($sql);
 }
 function loadAllBill(){
-    $sql = "select * from tbl_order";
+    $sql = "select id_order, user, sdt, email, diachi, tongtien,
+            CASE
+            WHEN pttt = 1 THEN 'Thanh toán khi nhận hàng'
+            WHEN pttt = 2 THEN 'Chuyển khoản'
+            ELSE 'Không xác định'
+            END AS pttt_text,
+            CASE
+            WHEN trangthai = 1 THEN 'Đang chờ duyệt'
+            WHEN trangthai = 2 THEN 'Đã xác nhận'
+            WHEN trangthai = 3 THEN 'Đang vận chuyển'
+            WHEN trangthai = 4 THEN 'Hoàn thành'
+            ELSE 'Không xác định'
+            END AS trangthai_text,
+            name
+            FROM tbl_order;
+    ";
     return $this->getData($sql);
 }
 }
